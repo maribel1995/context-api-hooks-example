@@ -1,9 +1,9 @@
 import Search from 'container/search'
 
-const App = ({ trips }) => {
+const App = (props) => {
   return (
     <>
-      <Search trips={trips} context={'returns'}/>
+      <Search {...props} />
     </>
   )
 }

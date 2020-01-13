@@ -20,14 +20,20 @@ export const searchReducer = (state = searchStore, action) => {
       return {
         search: {
           ...state.search,
-          [action.context]: { date: action.set }
+          [action.context]: {
+            ...state.search[action.context],
+            date: action.set
+          }
         }
       }
     case SET_TRIPS:
       return {
         search: {
           ...state.search,
-          [action.context]: { trips: action.set }
+          [action.context]: {
+            ...state.search[action.context],
+            trips: action.set
+          }
         }
       }
     default:

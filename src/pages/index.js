@@ -10,10 +10,18 @@ const Index = (props) => {
   )
 }
 
-Index.getInitialProps = async () => {
-  const res = await getTrips('sao-paulo-sp-todos', 'rio-de-janeiro-rj-todos', '2020-01-13', '2020-01-15')
+Index.getInitialProps = async ({ query }) => {
+  const res = await getTrips({ ...query })
   const data = await res.data
-  return { trips: data }
+  return {
+    trips: data,
+    date: {
+      departures: query.departureDate,
+      returns: query.returnDate
+    }
+  }
 }
 
 export default Index
+
+// ?from=sao-paulo-sp-todos&to=rio-de-janeiro-rj-todos&departureDate=2020-01-24&returnDate=2020-01-23
