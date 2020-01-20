@@ -25,7 +25,7 @@ const Search = ({ search, dispatch, trips, date }) => {
 
   return (
     <div>
-      <div><Tabs contextDate={contextDate} context={context}/></div>
+      <div><Tabs contextDate={contextDate} context={context} contextTrip={contextTrip}/></div>
       <button onClick={() => setContext(DEPARTURE)}>Departures</button>
       <button onClick={() => setContext(RETURN)}>Returns</button>
       <div>{contextDate.toString()}</div>

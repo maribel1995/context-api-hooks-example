@@ -1,8 +1,9 @@
 import Connect from 'store/config/connect'
-import { setDate } from 'store/search'
+import { setDate, setTrips } from 'store/search'
+import { fetchTrips } from 'api/trip-service'
 import t from 'prop-types'
 
-const Tab = ({ date, active, dispatch, context }) => {
+const Tab = ({ contextTrip, date, active, dispatch, context }) => {
   const isActive = (active) => {
     const style = { border: '1px solid purple', padding: '10px', cursor: 'pointer' }
     return active ? Object.assign(style, { backgroundColor: 'purple', color: 'white' }) : style
@@ -24,6 +25,8 @@ const Tab = ({ date, active, dispatch, context }) => {
 
     if (selectedDate.setHours(0, 0, 0, 0) < todayDate) return
     dispatch(setDate(context, selectedDate.toISOString()))
+    const { from, to } = contextTrip[0]
+    dispatch(setTrips(context, fetchTrips(from, to, selectedDate.toISOString())))
   }
 
   return (
@@ -42,7 +45,8 @@ Tab.propTypes = {
   date: t.string,
   active: t.bool,
   dispatch: t.func,
-  context: t.string
+  context: t.string,
+  contextTrip: t.object
 }
 
 export default Connect(mapStateToProps)(Tab)

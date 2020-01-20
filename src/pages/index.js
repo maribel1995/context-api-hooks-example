@@ -23,5 +23,3 @@ Index.getInitialProps = async ({ query }) => {
 }
 
 export default Index
-
-// ?from=sao-paulo-sp-todos&to=rio-de-janeiro-rj-todos&departureDate=2020-01-24&returnDate=2020-01-23
